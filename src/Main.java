@@ -1,8 +1,9 @@
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         //System.out.println("\nHello world");
         //Clock time = new Clock;
 
@@ -19,5 +20,7 @@ public class Main {
         System.out.println(digit1.toString());
         digit1.setCity(kijow);
         System.out.println(digit1.toString());
+
+        AnalogClock.toSvg("file.svg");
     }
 }
