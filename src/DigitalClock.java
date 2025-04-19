@@ -5,9 +5,9 @@ public class DigitalClock extends Clock{
     }
     private Format format;
 
-    public DigitalClock (int hour, int minute, int second, Format format)
+    public DigitalClock (int hour, int minute, int second, City city, Format format)
     {
-        super(hour, minute, second);
+        super(hour, minute, second, city);
         this.format=format;
     }
 

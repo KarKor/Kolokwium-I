@@ -5,8 +5,11 @@ public abstract class Clock {
     int hour;
     int minute;
     int second;
+    private City city;
 
-
+    public City getCity() {
+        return city;
+    }
 
     //public Clock(int hour, int minute, int second){}
     
@@ -27,9 +30,21 @@ public abstract class Clock {
         this.second = s;
 
     }
-    public Clock(int hour, int minute, int second) {
+
+    public Clock(int hour, int minute, int second, City city) {
         setTime(hour, minute, second);
+        this.city=city;
     }
+
+    public void setCity(City cityName){
+        hour=(hour+(cityName.gettZone()-this.city.gettZone()))%24;
+        if(hour<0) hour +=24;
+        this.city=cityName;
+    }
+
+
+
+
 
     @Override
     public String toString() {
