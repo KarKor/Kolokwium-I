@@ -2,9 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+
+import static java.time.LocalTime.NOON;
 
 public class City {
     private String capital;
@@ -35,6 +35,7 @@ public class City {
         return longitude;
     }
 
+
     private static City parseLine(String fStr) {
         String[] parts = fStr.split(",");
 
@@ -45,6 +46,8 @@ public class City {
 
         return new City(capital, tZone, latitude, longitude);
     }
+
+
 
     public static Map<String, City> parseFile(String fPath){
         Map<String, City> map = new HashMap<>();
@@ -86,4 +89,15 @@ public class City {
 
         return timeInZone.plusSeconds(offset);
     }
+    public long offsetInSecs(){
+        int zoneSecs = 3600*12 + 3600*tZone;
+        int localSecs = localMeanTime(NOON).toSecondOfDay();
+
+        return Math.abs(zoneSecs - localSecs);
+    }
+
+    public static Comparator<City> worstTimeZoneFit(){
+        return Comparator.comparingLong(City::offsetInSecs).reversed();
+    }
+
 }

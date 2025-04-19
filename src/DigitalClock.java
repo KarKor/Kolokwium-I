@@ -10,6 +10,9 @@ public class DigitalClock extends Clock{
         super(hour, minute, second, city);
         this.format=format;
     }
+    public int toSecs(int hour, int minute, int second){
+        return second+60*minute+3600*hour;
+    }
 
     @Override
     public String toString() {
