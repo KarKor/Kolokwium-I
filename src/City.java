@@ -1,8 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class City {
     private String capital;
@@ -66,5 +68,22 @@ public class City {
 
         return map;
 
+    }
+
+    private double longitudeToDegrees(String longi){
+        longi=longi.trim();
+        String[] parts = longi.split(" ");
+        double degs = Double.parseDouble(parts[0]);
+        if(Objects.equals(parts[1], "W")){
+            degs=(-1)*degs;
+        }
+
+        return degs;
+    }
+    public LocalTime localMeanTime(LocalTime timeInZone){
+        double longitudeDegrees=longitudeToDegrees(this.longitude);
+        int offset = (int) Math.round(longitudeDegrees*240);
+
+        return timeInZone.plusSeconds(offset);
     }
 }

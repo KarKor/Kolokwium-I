@@ -11,10 +11,6 @@ public class DigitalClock extends Clock{
         this.format=format;
     }
 
-
-//    public DigitalClock(Format format) {
-//        this.format = format;
-//    }
     @Override
     public String toString() {
 

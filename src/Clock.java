@@ -10,15 +10,12 @@ public abstract class Clock {
     public City getCity() {
         return city;
     }
-
-    //public Clock(int hour, int minute, int second){}
     
     public void setCurrentTime(){
         hour = LocalTime.now().getHour();
         minute = LocalTime.now().getMinute();
         second = LocalTime.now().getSecond();
     }
-
 
     public void setTime(int h, int m, int s) /*throws IllegalArgumentException*/{
 
@@ -41,10 +38,6 @@ public abstract class Clock {
         if(hour<0) hour +=24;
         this.city=cityName;
     }
-
-
-
-
 
     @Override
     public String toString() {
